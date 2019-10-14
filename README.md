@@ -19,6 +19,21 @@ Value -> list consisting of a Dictionary with the following keys.
                 - body -> body text of PR
                 - state -> whether PR is open or closed
 
+How to deploy:
+    - install flask using pip
+    - Navigate to the api.py file
+    - Run this command
+        python3.6 api.py
+    - Link will be displayed in the console.
+
+
+
+
+
+
+
+
+
 
 
 Built by Irfan S
