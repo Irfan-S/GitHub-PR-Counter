@@ -30,7 +30,7 @@ pullreq_dict = {}
 # TODO A dummy list to test, add the final list here.
 u_name_list =['hargup','arunpatro','amrav','Rahul-12','icyflame','devbihari','Irfan-S','vthornheart-bng','adamtheturtle','ginglis13','thevivekshukla','asim','questionreality']
 
-for count, u_name in enumerate(presidents,start=1):
+for count, u_name in enumerate(u_name_list,start=1):
     if((count % 50) == 0):
         # wait every 50 request for 1 sec
         time.sleep(1)
