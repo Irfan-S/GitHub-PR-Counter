@@ -2,12 +2,12 @@
 # Under guidance of Amit Jha.
 
 import flask
-from github import Github
 import requests
 import json
 import sqlite3
 from flask import jsonify,request
 from collections import OrderedDict
+import time
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -30,10 +30,14 @@ pullreq_dict = {}
 # TODO A dummy list to test, add the final list here.
 u_name_list =['hargup','arunpatro','amrav','Rahul-12','icyflame','devbihari','Irfan-S','vthornheart-bng','adamtheturtle','ginglis13','thevivekshukla','asim','questionreality']
 
-for u_name in u_name_list:
-    repos_url = 'https://api.github.com/search/issues?q=-label:invalid+created:' + start_date + ".." + end_date + '+type:pr+is:public+author:'+u_name+'&per_page=300'
+for count, u_name in enumerate(u_name_list,start=1):
+    if((count % 50) == 0):
+        # wait every 50 request for 1 sec
+        time.sleep(1)
 
+    repos_url = 'https://api.github.com/search/issues?q=-label:invalid+created:' + start_date + ".." + end_date + '+type:pr+is:public+author:'+u_name+'&per_page=300'
     json_obj = json.loads(gh_session.get(repos_url).text)
+
 
     # Each dict key is mapped to another dict wrapped by a list.
     if(not json_obj.get("message")=='Validation Failed'):
@@ -69,7 +73,7 @@ def api_top10():
         print("Name: "+ item[0]+" -> No. of commits: " +str(len(item[1])))
 
         top10_list.append({'Name':item[0],"PRs":len(item[1])})
-    
+
 
     # Return a list of 10 10, with a dictonary inside each element for name and pr pairs
     return jsonify(top10_list)
@@ -78,8 +82,3 @@ def api_top10():
     #return jsonify(top10)
 
 app.run()
-
-
-
-
-
