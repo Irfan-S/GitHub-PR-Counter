@@ -8,6 +8,7 @@ import json
 import sqlite3
 from flask import jsonify,request
 from collections import OrderedDict
+from apifacade import GithubAPIFacade
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -15,6 +16,14 @@ app.config["DEBUG"] = True
 # TODO Enter a single username/password combination to access the GitHub API.
 username =""
 token=""
+
+# example
+keys = [
+    'token1',
+    'token2'
+]
+api_facade = GithubAPIFacade(keys)
+api_facade.get_api().get_user() # example
 
 # TODO Edit the start and end dates to filter out PR's for a particular time range
 start_date="2000-09-30T10%3A00%3A00%2B00%3A00"   #start date
