@@ -36,4 +36,4 @@ How to deploy:
 
 
 
-Built by Irfan S
+Built by Irfan S and Amit Jha
